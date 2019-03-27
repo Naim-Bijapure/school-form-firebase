@@ -8,6 +8,13 @@
 
 # production
 /build
+.vscode/ 
+.firebase/
+.env
+.cache/
+dist/
+.firebaserc
+
 
 # misc
 .DS_Store
