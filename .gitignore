@@ -10,6 +10,9 @@
 /build
 .vscode/ 
 .firebase/
+.firebase
+.vscode
+build
 .env
 .cache/
 dist/
