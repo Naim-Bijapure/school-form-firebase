@@ -292,14 +292,14 @@ export default  function Create(props) {
                             </div>
 
  
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="customCheck" name="agree1" value="agree1" />
-                              <label class="custom-control-label" for="customCheck">i agree to abide by the rules and regulations of the school</label>
+                            <div className="custom-control custom-checkbox">
+                              <input type="checkbox" className="custom-control-input" id="customCheck" name="agree1" value="agree1" />
+                              <label className="custom-control-label" htmlFor="customCheck">i agree to abide by the rules and regulations of the school</label>
                              </div>
                           
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="customCheck1" name="agree2" value="agree2"  />
-                              <label class="custom-control-label" for="customCheck1">i certify that above statement is correct to the best of my knowledge and belief.</label>
+                            <div className="custom-control custom-checkbox">
+                              <input type="checkbox" className="custom-control-input" id="customCheck1" name="agree2" value="agree2"  />
+                              <label className="custom-control-label" htmlFor="customCheck1">i certify that above statement is correct to the best of my knowledge and belief.</label>
                              </div>
 
 
@@ -313,14 +313,14 @@ export default  function Create(props) {
                        
                         <div className="input-group-text mt-2 "> The Original Birth Certificate is attatched yes/no
 
-                           <div class="form-check-inline mx-2 ">
-                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="bc" value="yes" />yes
+                           <div className="form-check-inline mx-2 ">
+                             <label className="form-check-label">
+                              <input type="radio" className="form-check-input" name="bc" value="yes" />yes
                              </label>
                               </div>
-                           <div class="form-check-inline">
-                            <label class="form-check-label">
-                             <input type="radio" class="form-check-input" name="bc" value="no" />No
+                           <div className="form-check-inline">
+                            <label className="form-check-label">
+                             <input type="radio" className="form-check-input" name="bc" value="no" />No
                           </label>
                        </div>
                       </div>
@@ -330,14 +330,14 @@ export default  function Create(props) {
                             
                         <div className="input-group-text mt-2 "> Leaving Certificate and Evaluation Result is attached: yes/no
 
-                           <div class="form-check-inline mx-2 ">
-                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="lc" value="yes" />yes
+                           <div className="form-check-inline mx-2 ">
+                             <label className="form-check-label">
+                              <input type="radio" className="form-check-input" name="lc" value="yes" />yes
                              </label>
                               </div>
-                           <div class="form-check-inline">
-                            <label class="form-check-label">
-                             <input type="radio" class="form-check-input" name="lc" value="no" />No
+                           <div className="form-check-inline">
+                            <label className="form-check-label">
+                             <input type="radio" className="form-check-input" name="lc" value="no" />No
                           </label>
                        </div>
                       </div>
@@ -352,7 +352,7 @@ export default  function Create(props) {
                            <label htmlFor="name">Address</label>
                            <textarea className="form-control " name="address"  placeholder="enter address" ></textarea>
                            <label htmlFor="name">Contact</label>
-                           <input type="number" name="contact" className="form form-control" placeholder="Enter Contact"/>                     */}
+                           <input type="number" name="contact" className="form htmlForm-control" placeholder="Enter Contact"/>                     */}
                                     
                            
                             <label htmlFor="photo">Upload a Photo</label>
