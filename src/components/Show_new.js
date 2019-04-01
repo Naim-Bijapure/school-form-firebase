@@ -3,6 +3,7 @@ import {Link}from 'react-router-dom';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import {renderToString,renderToStaticMarkup} from 'react-dom/server';
+import  'jspdf-autotable';
 
 import firebase from '../Firebase';
 import  '../App.css'
@@ -15,7 +16,7 @@ let ObjType ={
     surName:"",
     mt:"",
     religion:"",
-    cast:"",
+    caste:"",
     dob:"",
     plb:"",
     city:"",
@@ -35,7 +36,9 @@ let ObjType ={
     agree1:"",
     agree2:"",
     bc: " ",
-    lc:''
+    lc:'',
+    Scaste:'',
+    state:''
   } 
 export default function Show(props) {
 
@@ -77,7 +80,7 @@ export default function Show(props) {
       }
  
       function OnPrint(){
-        const input = document.getElementById('N');
+        // const input = document.getElementById('N');
 
 // html2Canvas(input)
 //   .then((canvas) => {
@@ -98,13 +101,14 @@ export default function Show(props) {
 //   });
 // ;
 
-  const string =renderToStaticMarkup(<PdfPrint currentData={{...currentData}}/>);
-  const pdf = new jsPDF("p", "mm", "a4",true);
-     
+  // const string =renderToStaticMarkup(<PdfPrint currentData={{...currentData}}/>);
+  // const doc = new jsPDF("p", "mm", "a4",true);
+  
+//  doc.fromHTML(string);
 
-   pdf.fromHTML(string);
-  pdf.save("pdf");
-
+ 
+ //Change text color
+//  doc.save("pdf");
 // console.log(string);
 
   // pdf.fromHTML(string, 15, 15, {
@@ -124,8 +128,8 @@ export default function Show(props) {
 // 			pdf.save("n.pdf");
 // });
 
-
-  
+ PdfPrint(currentData);
+ 
 } 
 
 
@@ -138,7 +142,7 @@ export default function Show(props) {
               <Link to="/"><button className="btn btn-primary">Home </button></Link>
            </div>
 
-  <div className="NN card-body text-center" >
+  <div className="show-form card-body text-center" >
 
 <div class="container">
  <div className="row">
@@ -186,14 +190,14 @@ export default function Show(props) {
       <div className="mt-1 mr-5 border-bottom">{currentData.surName}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.mt}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.religion}</div> 
-      <div className="mt-1 mr-5 border-bottom">{currentData.cast }</div> 
-      <div className="mt-1 mr-5 border-bottom">{'-'}</div> 
-      <div className="mt-1 mr-5 border-bottom   ">{currentData.dob}</div> 
+      <div className="mt-1 mr-5 border-bottom">{currentData.caste }</div> 
+      <div className="mt-1 mr-5 border-bottom">{currentData.Scaste }</div> 
+      <div className="mt-1 mr-5 border-bottom ">{currentData.dob}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.plb}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.city}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.tal}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.dist}</div> 
-      <div className="mt-1 mr-5 border-bottom">{'-'}</div> 
+      <div className="mt-1 mr-5 border-bottom">{currentData.state }</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Lschool}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Foccupation }</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Moccupation}</div> 
@@ -223,79 +227,76 @@ export default function Show(props) {
     <button className="btn btn-danger" onClick={()=>{onDelete(props.match.params.id)}}>Delete</button>
     <button className="btn btn-info" onClick={OnPrint}  >Print</button>
   </div>
+
 </div>
     
      ); 
 }
 
 
-function PdfPrint(props) {
+function PdfPrint(currentData) {
+
+ var columns = [
+	{ title: "Field", dataKey: "A" },
+	{ title: "Details", dataKey: "B" },
+
+];
+
+// var rows = [
+// 	{ A: "name", B: `${currentData.Sname}`},
+// 	{ A: "Father's name", B: `${currentData.Fname}` }
+// ]; 
+var rows=[    {A:"First Name :"   ,  B:`${currentData.Sname}`},
+    {A:"Father' Name :"   ,  B:`${currentData.Fname}`},
+    {A:"Mother's name :"   ,  B:`${currentData.Mname}`},
+    {A:"Surname :"   ,  B:`${currentData.surName}`},
+    {A:"Mother Tongue :"   ,  B:`${currentData.mt}`},
+    {A:"Religion :"   ,  B:`${currentData.religion}`},
+    {A:"Caste :"   ,  B:`${currentData.caste}`},
+    {A:"Sub Caste :"   ,  B:`${currentData.Scaste}`},
+    {A:"Date of Birth :"   ,  B:`${currentData.dob}`},
+    {A:"Place Of Birth :"   ,  B:`${currentData.plb}`},
+    {A:"City :"   ,  B:`${currentData.city}`},
+    {A:"Tal :"   ,  B:`${currentData.tal}`},
+    {A:"District :"   ,  B:`${currentData.dist}`},
+    {A:"State :"   ,  B:`${currentData.state}`},
+    {A:"Last School Attended :"   ,  B:`${currentData.Lschool}`},
+    {A:"Father's Profession/Business :"   ,  B:`${currentData.Foccupation}`},
+    {A:"Mother's Profession/Business :"   ,  B:`${currentData.Moccupation}`},
+    {A:"Father's Annual Income :"   ,  B:`${currentData.Fincome}`},
+    {A:"Mother's Annual Income :"   ,  B:`${currentData.Mincome}`},
+    {A:"Residential Address :"   ,  B:`${currentData.Raddress}`},
+    {A:"Residential Phone No :"   ,  B:`${currentData.Rno}`},
+    {A:"Mobile No :"   ,  B:`${currentData.Mno}`},
+    {A:"Office Address :"   ,  B:`${currentData.Oaddress}`},
+    {A:"Office Phone No :"   ,  B:`${currentData.Ono}`},
+    {A:"Original Birth Certificate Attached :",  B:`${currentData.bc}`},
+    {A:"Original L/C and  Result Attached :"   ,  B:`${currentData.lc}`}
+ ]
+
+
+var doc = new jsPDF('p', 'pt');
+  doc.setFontSize(25);
+  doc.setTextColor(40);
+  doc.text("Disha English Medium School", 130, 30);
+  doc.setFontSize(15);
+  doc.setTextColor(40);
+  doc.text("Student Admission form", 190, 50);
+  doc.setFontStyle('normal');
+  doc.setDrawColor(0);
+doc.setFillColor(0, 0, 0);
+doc.rect(480, 10, 80, 80);
   
+  doc.autoTable(columns, rows, {
+    startY: doc.autoTableEndPosY() + 100,
+    margin: { horizontal: 5 },
+    styles: { overflow: 'linebreak' },
+    bodyStyles: { valign: 'top' },
+    columnStyles: { email: { columnWidth: 'wrap' } },
+    theme: "grid"
+  });
+
   
-    return(
-      <div id="print"> 
-    <table id="basic-table" >
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Country</th>
-      <th>IP-address</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="right">1</td>
-      <td>Donna</td>
-      <td>Moore</td>
-      <td>dmoore0@furl.net</td>
-      <td>China</td>
-      <td>211.56.242.221</td>
-    </tr>
-    <tr>
-      <td align="right">2</td>
-      <td>Janice</td>
-      <td>Henry</td>
-      <td>jhenry1@theatlantic.com</td>
-      <td>Ukraine</td>
-      <td>38.36.7.199</td>
-    </tr>
-    <tr>
-      <td align="right">3</td>
-      <td>Ruth</td>
-      <td>Wells</td>
-      <td>rwells2@constantcontact.com</td>
-      <td>Trinidad and Tobago</td>
-      <td>19.162.133.184</td>
-    </tr>
-    <tr>
-      <td align="right">4</td>
-      <td>Jason</td>
-      <td>Ray</td>
-      <td>jray3@psu.edu</td>
-      <td>Brazil</td>
-      <td>10.68.11.42</td>
-    </tr>
-    <tr>
-      <td align="right">5</td>
-      <td>Jane</td>
-      <td>Stephens</td>
-      <td>jstephens4@go.com</td>
-      <td>United States</td>
-      <td>47.32.129.71</td>
-    </tr>
-    <tr>
-      <td align="right">6</td>
-      <td>Adam</td>
-      <td>Nichols</td>
-      <td>anichols5@com.com</td>
-      <td>Canada</td>
-      <td>18.186.38.37</td>
-    </tr>
-  </tbody>
-</table>
-      </div>
-    ); 
+  doc.save(`${currentData.Sname}.pdf`);
+ 
 }

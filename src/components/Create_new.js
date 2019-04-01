@@ -34,7 +34,8 @@ export default  function Create(props) {
       const {Sname,Fname,Mname,
             surName,mt,religion,caste,dob,
             plb,city,tal,dist,Lschool,Foccupation,
-         Moccupation,Fincome,Mincome,Raddress,Rno,Mno,Oaddress,Ono,agree1,agree2,bc,lc
+         Moccupation,Fincome,Mincome,Raddress,Rno,Mno,Oaddress,Ono,agree1,agree2,bc,lc,
+         Scaste,state
       
       
                } = e.target.elements;
@@ -46,7 +47,7 @@ export default  function Create(props) {
                     surName:surName.value,
                     mt:mt.value,
                     religion:religion.value,
-                    cast:caste.value,
+                    caste:caste.value,
                     dob:dob.value,
                     plb:plb.value,
                     city:city.value,
@@ -66,7 +67,9 @@ export default  function Create(props) {
                     agree1:agree1.value,
                     agree2:agree2.value,
                     bc:bc.value,
-                    lc:lc.value
+                    lc:lc.value,
+                    Scaste:Scaste.value,
+                    state:state.value
                   } 
      
       
@@ -96,7 +99,7 @@ export default  function Create(props) {
           
           
           
-          
+      alert('please wait file is uploading ');     
     var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
     
     // Listen for state changes, errors, and completion of the upload.
@@ -155,40 +158,44 @@ export default  function Create(props) {
                            
                            <div className="form-group col-md-6">
                            <label htmlFor="name">Student First  Name</label>
-                           <input type="text" name="Sname" className=" form-control" placeholder="Enter"/>                    
+                           <input type="text" name="Sname" className=" form-control" required placeholder="Enter" />                    
                            </div>
 
                           <div className="form-group col-md-6">
                            <label htmlFor="name">Father's First Name</label>
-                           <input type="text" name="Fname" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="Fname" className=" form-control" required placeholder="Enter "/>                    
                           </div>
                            
                            <div className="form-group col-md-6">
                            <label htmlFor="name">Mother's First  Name</label>
-                           <input type="text" name="Mname" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="Mname" className=" form-control" required placeholder="Enter "/>                    
                            </div> 
                            
                            <div className="form-group col-md-6">
                            <label htmlFor="name"> Surname</label>
-                           <input type="text" name="surName" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="surName" className=" form-control" required placeholder="Enter "/>                    
                            </div>                          
 
-                           <div className="form-group col-md-4">
+                           <div className="form-group col-md-3">
                            <label htmlFor="name">Mother Tounge</label>
-                           <input type="text" name="mt" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="mt" className=" form-control" required placeholder="Enter "/>                    
                            </div> 
                            
-                           <div className="form-group col-md-4">
+                           <div className="form-group col-md-3">
                            <label htmlFor="name">Religion</label>
-                           <input type="text" name="religion" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="religion" className=" form-control" required placeholder="Enter "/>                    
                            </div>
 
                            
-                           <div className="form-group col-md-4">
+                           <div className="form-group col-md-3">
                            <label htmlFor="name">Caste</label>
-                           <input type="text" name="caste" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="caste" className=" form-control" required placeholder="Enter "/>                    
                            </div>
-
+                            
+                            <div className="form-group col-md-3">
+                           <label htmlFor="name">Sub Caste</label>
+                           <input type="text" name="Scaste" className=" form-control" required placeholder="Enter "/>                    
+                           </div>
                            
 
                            
@@ -199,34 +206,41 @@ export default  function Create(props) {
                             
                            <div className="form-group col-md-6">
                            <label htmlFor="name">Date Of Birth</label>
-                           <input type="date" name="dob" className=" form-control" placeholder="Enter "/>                    
+                           <input type="date" name="dob" className=" form-control" required placeholder="Enter "/>                    
                            </div>
                            
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Place Of Birth</label>
-                           <input type="text" name="plb" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="plb" className=" form-control" required placeholder="Enter "/>                    
                            </div>
                            
                            
-                           <div className="form-group col-md-4 col-sm-4">
+                           <div className="form-group col-md-3 col-sm-3">
                            <label htmlFor="name">City</label>
-                           <input type="text" name="city" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="city" className=" form-control" required placeholder="Enter "/>                    
                            </div>                           
 
-                            <div className="form-group col-md-4 col-sm-4">
+                            <div className="form-group col-md-3 col-sm-3">
                            <label htmlFor="name">Tal</label>
-                           <input type="text" name="tal" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="tal" className=" form-control" required placeholder="Enter "/>                    
                            </div>                           
 
-                            <div className="form-group col-md-4 col-sm-4">
+                            <div className="form-group col-md-3 col-sm-3">
                            <label htmlFor="name">District</label>
-                           <input type="text" name="dist" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="dist" className=" form-control" required placeholder="Enter "/>                    
                            </div>
+                          
+                          <div className="form-group col-md-3 col-sm-3">
+                           <label htmlFor="name">State</label>
+                           <input type="text" name="state" className=" form-control" required placeholder="Enter "/>                    
+                           </div>
+
+
 
                            <div className="form-group  col-md-7 mr-auto  ">
                            
                            <label htmlFor="name">Last School Attended (if Any)</label>
-                           <input type="text" name="Lschool" className=" form-control" placeholder="Enter " />                    
+                           <input type="text" name="Lschool" className=" form-control" required placeholder="Enter " />                    
                            
                            </div> 
                            
@@ -235,29 +249,29 @@ export default  function Create(props) {
                            
                            <div className="form-group col-md-6">
                            <label htmlFor="name">Detail's Of Father Occupation/Business/Profession</label>
-                           <input type="text" name="Foccupation" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="Foccupation" className=" form-control" required placeholder="Enter "/>                    
                             </div>
                            
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Detail's Of Mother Occupation/Busines/Profession</label>
-                           <input type="text" name="Moccupation" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="Moccupation" className=" form-control" required placeholder="Enter "/>                    
                            </div>                           
                            
                            
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Fathers Annual Income</label>
-                           <input type="text" name="Fincome" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="Fincome" className=" form-control" required placeholder="Enter "/>                    
                             </div>
 
                             
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Mother's Annual Income</label>
-                           <input type="text" name="Mincome" className=" form-control" placeholder="Enter "/>                    
+                           <input type="text" name="Mincome" className=" form-control" required placeholder="Enter "/>                    
                             </div>
 
 
                            <label htmlFor="name">Residential Address</label>
-                           <textarea className="form-control " name="Raddress"  placeholder="enter address" ></textarea>
+                           <textarea className="form-control " name="Raddress"  required  jplaceholder="enter address" ></textarea>
                             
                             
                             
@@ -265,7 +279,7 @@ export default  function Create(props) {
 
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Residential Phone No.</label>
-                           <input type="number" name="Rno" className=" form-control" placeholder="Enter "/>                    
+                           <input type="number" name="Rno" className=" form-control"   placeholder="Enter "/>                    
                             </div>
                             
 
@@ -273,7 +287,7 @@ export default  function Create(props) {
                             
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Mobile No.</label>
-                           <input type="number" name="Mno" className=" form-control" placeholder="Enter "/>                    
+                           <input type="number" name="Mno" className=" form-control" required  placeholder="Enter "/>                    
                             </div>
 
                             
@@ -293,12 +307,12 @@ export default  function Create(props) {
 
  
                             <div className="custom-control custom-checkbox">
-                              <input type="checkbox" className="custom-control-input" id="customCheck" name="agree1" value="agree1" />
+                              <input type="checkbox" className="custom-control-input" id="customCheck" name="agree1" value="agree1" required />
                               <label className="custom-control-label" htmlFor="customCheck">i agree to abide by the rules and regulations of the school</label>
                              </div>
                           
                             <div className="custom-control custom-checkbox">
-                              <input type="checkbox" className="custom-control-input" id="customCheck1" name="agree2" value="agree2"  />
+                              <input type="checkbox" className="custom-control-input" id="customCheck1" name="agree2" value="agree2" required  />
                               <label className="custom-control-label" htmlFor="customCheck1">i certify that above statement is correct to the best of my knowledge and belief.</label>
                              </div>
 
@@ -315,12 +329,12 @@ export default  function Create(props) {
 
                            <div className="form-check-inline mx-2 ">
                              <label className="form-check-label">
-                              <input type="radio" className="form-check-input" name="bc" value="yes" />yes
+                              <input type="radio" className="form-check-input" name="bc" value="yes"  required/>yes
                              </label>
                               </div>
                            <div className="form-check-inline">
                             <label className="form-check-label">
-                             <input type="radio" className="form-check-input" name="bc" value="no" />No
+                             <input type="radio" className="form-check-input" name="bc" value="no" required />No
                           </label>
                        </div>
                       </div>
@@ -332,12 +346,12 @@ export default  function Create(props) {
 
                            <div className="form-check-inline mx-2 ">
                              <label className="form-check-label">
-                              <input type="radio" className="form-check-input" name="lc" value="yes" />yes
+                              <input type="radio" className="form-check-input" name="lc" value="yes"  required />yes
                              </label>
                               </div>
                            <div className="form-check-inline">
                             <label className="form-check-label">
-                             <input type="radio" className="form-check-input" name="lc" value="no" />No
+                             <input type="radio" className="form-check-input" name="lc" value="no" required />No
                           </label>
                        </div>
                       </div>
@@ -355,10 +369,12 @@ export default  function Create(props) {
                            <input type="number" name="contact" className="form htmlForm-control" placeholder="Enter Contact"/>                     */}
                                     
                            
+                            <div className="form-group col-md-12">
+                            
                             <label htmlFor="photo">Upload a Photo</label>
                             <div className="input-group mb-3">
                                 <div className="custom-file">
-                                  <input type="file" className="custom-file-input" ref={imgRef}  id="inputGroupFile02" />
+                                  <input type="file" className="custom-file-input" ref={imgRef}  id="inputGroupFile02" required/>
                                   <label className="custom-file-label"   aria-describedby="inputGroupFileAddon02">Choose file</label>
                                 </div>
                                 <div className="input-group-append">
@@ -370,6 +386,7 @@ export default  function Create(props) {
                                <div className="progress-bar progress-bar-striped" role="progressbar" style={{width:bar*15}} aria-valuenow='100' aria-valuemin="0" aria-valuemax="100">{bar}%</div>
                              </div>
   
+                            </div>
                         
                            <div className="text-center mt-4">
                             <button  type="submit" disabled={!studentData.photo} className="btn btn-primary ">Submit</button>

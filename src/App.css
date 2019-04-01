@@ -48,3 +48,7 @@
  /* transform: translateX(10%); */
  padding-left: 30px;
 }
+.show-form{
+background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+
+}
