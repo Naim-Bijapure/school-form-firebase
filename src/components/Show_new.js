@@ -276,12 +276,19 @@ var rows=[    {A:"First Name :"   ,  B:`${currentData.Sname}`},
 
 
 var doc = new jsPDF('p', 'pt');
+doc.addFont('ArialMS', 'Arial', 'normal','Times New Roman');
+doc.setFont('Times New Roman');
+ 
+  doc.setFontSize(10);
+  doc.setTextColor(40);
+  doc.text("DISHA EDUCATIONAL SOCIETY'S", 200, 15);
+
   doc.setFontSize(25);
   doc.setTextColor(40);
-  doc.text("Disha English Medium School", 130, 30);
+  doc.text("Disha English Medium School", 130, 40);
   doc.setFontSize(15);
   doc.setTextColor(40);
-  doc.text("Student Admission form", 190, 50);
+  doc.text("Student Admission form", 190, 60);
   doc.setFontStyle('normal');
   doc.setDrawColor(0);
 doc.setFillColor(0, 0, 0);
@@ -290,7 +297,7 @@ doc.rect(480, 10, 80, 80);
   doc.autoTable(columns, rows, {
     startY: doc.autoTableEndPosY() + 100,
     margin: { horizontal: 5 },
-    styles: { overflow: 'linebreak' },
+    styles: { overflow: 'linebreak',font:'Times New Roman' },
     bodyStyles: { valign: 'top' },
     columnStyles: { email: { columnWidth: 'wrap' } },
     theme: "grid"

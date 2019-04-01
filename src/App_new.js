@@ -46,7 +46,11 @@ export default function App(props) {
 
        <div className="card N shadow p-1 mb-3 bg-white rounded  ">
            <div className="card-body ">
-              Disha English Medium School,Ichalkaranji
+             <span style={{fontSize:20}}>DISHA EDUCATIONAL SOCIETY'S</span><br/>
+            <span   style={{fontSize:30}}>
+               Disha English Medium School,Ichalkaranji
+              </span> 
+              
             </div>
            </div>
             </h3>
