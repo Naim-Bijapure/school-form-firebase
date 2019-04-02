@@ -246,61 +246,68 @@ function PdfPrint(currentData) {
 // 	{ A: "name", B: `${currentData.Sname}`},
 // 	{ A: "Father's name", B: `${currentData.Fname}` }
 // ]; 
-var rows=[    {A:"First Name :"   ,  B:`${currentData.Sname}`},
-    {A:"Father' Name :"   ,  B:`${currentData.Fname}`},
-    {A:"Mother's name :"   ,  B:`${currentData.Mname}`},
-    {A:"Surname :"   ,  B:`${currentData.surName}`},
-    {A:"Mother Tongue :"   ,  B:`${currentData.mt}`},
-    {A:"Religion :"   ,  B:`${currentData.religion}`},
-    {A:"Caste :"   ,  B:`${currentData.caste}`},
-    {A:"Sub Caste :"   ,  B:`${currentData.Scaste}`},
-    {A:"Date of Birth :"   ,  B:`${currentData.dob}`},
-    {A:"Place Of Birth :"   ,  B:`${currentData.plb}`},
-    {A:"City :"   ,  B:`${currentData.city}`},
-    {A:"Tal :"   ,  B:`${currentData.tal}`},
-    {A:"District :"   ,  B:`${currentData.dist}`},
-    {A:"State :"   ,  B:`${currentData.state}`},
-    {A:"Last School Attended :"   ,  B:`${currentData.Lschool}`},
-    {A:"Father's Profession/Business :"   ,  B:`${currentData.Foccupation}`},
-    {A:"Mother's Profession/Business :"   ,  B:`${currentData.Moccupation}`},
-    {A:"Father's Annual Income :"   ,  B:`${currentData.Fincome}`},
-    {A:"Mother's Annual Income :"   ,  B:`${currentData.Mincome}`},
-    {A:"Residential Address :"   ,  B:`${currentData.Raddress}`},
-    {A:"Residential Phone No :"   ,  B:`${currentData.Rno}`},
-    {A:"Mobile No :"   ,  B:`${currentData.Mno}`},
-    {A:"Office Address :"   ,  B:`${currentData.Oaddress}`},
-    {A:"Office Phone No :"   ,  B:`${currentData.Ono}`},
-    {A:"Original Birth Certificate Attached :",  B:`${currentData.bc}`},
-    {A:"Original L/C and  Result Attached :"   ,  B:`${currentData.lc}`}
+var rows=[    {A:"1 . First Name :"   ,  B:`${currentData.Sname}`},
+    {A:"2. Father' Name :"   ,  B:`${currentData.Fname}`},
+    {A:"3. Mother's name :"   ,  B:`${currentData.Mname}`},
+    {A:"4. Surname :"   ,  B:`${currentData.surName}`},
+    {A:"5. Mother Tongue :"   ,  B:`${currentData.mt}`},
+    {A:"6. Religion :"   ,  B:`${currentData.religion}`},
+    {A:"7. Caste :"   ,  B:`${currentData.caste}`},
+    {A:"8. Sub Caste :"   ,  B:`${currentData.Scaste}`},
+    {A:"9. Date of Birth :"   ,  B:`${currentData.dob}`},
+    {A:"10. Place Of Birth :"   ,  B:`${currentData.plb}`},
+    {A:"11. City :"   ,  B:`${currentData.city}`},
+    {A:"12. Tal :"   ,  B:`${currentData.tal}`},
+    {A:"13. District :"   ,  B:`${currentData.dist}`},
+    {A:"14. State :"   ,  B:`${currentData.state}`},
+    {A:"15. Last School Attended :"   ,  B:`${currentData.Lschool}`},
+    {A:"16. Father's Profession/Business :"   ,  B:`${currentData.Foccupation}`},
+    {A:"17. Mother's Profession/Business :"   ,  B:`${currentData.Moccupation}`},
+    {A:"18. Father's Annual Income :"   ,  B:`${currentData.Fincome}`},
+    {A:"19. Mother's Annual Income :"   ,  B:`${currentData.Mincome}`},
+    {A:"20.Residential Address :"   ,  B:`${currentData.Raddress}`},
+    {A:"21. Residential Phone No :"   ,  B:`${currentData.Rno}`},
+    {A:"22. Mobile No :"   ,  B:`${currentData.Mno}`},
+    {A:"23. Office Address :"   ,  B:`${currentData.Oaddress}`},
+    {A:"24. Office Phone No :"   ,  B:`${currentData.Ono}`},
+    {A:"25. Original Birth Certificate Attached:",  B:`${currentData.bc}`},
+    {A:"26. Original L/C and  Result Attached:"   ,  B:`${currentData.lc}`}
  ]
 
 
-var doc = new jsPDF('p', 'pt');
+// var doc = new jsPDF('p', 'pt');
+// Document of 210mm wide and 297mm high
+// new jsPDF('p', 'mm', [297, 210]);
+// Document of 297mm wide and 210mm high
+//  var doc= new jsPDF('l', 'mm', [297, 210]);
+// Document of 5 inch width and 3 inch high
+ var doc = new jsPDF('p', 'mm', 'legal');
+
 doc.addFont('ArialMS', 'Arial', 'normal','Times New Roman');
 doc.setFont('Times New Roman');
  
   doc.setFontSize(10);
   doc.setTextColor(40);
-  doc.text("DISHA EDUCATIONAL SOCIETY'S", 200, 15);
+  doc.text("DISHA EDUCATIONAL SOCIETY'S", 80, 25);
 
   doc.setFontSize(25);
   doc.setTextColor(40);
-  doc.text("Disha English Medium School", 130, 40);
+  doc.text("Disha English Medium School", 50, 35);
   doc.setFontSize(15);
   doc.setTextColor(40);
-  doc.text("Student Admission form", 190, 60);
+  doc.text("Student Admission form", 80, 45);
   doc.setFontStyle('normal');
   doc.setDrawColor(0);
 doc.setFillColor(0, 0, 0);
-doc.rect(480, 10, 80, 80);
+doc.rect(170 ,35, 35, 35);
   
   doc.autoTable(columns, rows, {
-    startY: doc.autoTableEndPosY() + 100,
-    margin: { horizontal: 5 },
-    styles: { overflow: 'linebreak',font:'Times New Roman' },
+    startY: doc.autoTableEndPosY() + 75,
+    margin: { horizontal: 15 },
+    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:14},
     bodyStyles: { valign: 'top' },
     columnStyles: { email: { columnWidth: 'wrap' } },
-    theme: "grid"
+    theme: "striped"
   });
 
   
