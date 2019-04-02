@@ -73,7 +73,7 @@ export default function Edit(props) {
             surName,mt,religion,caste,dob,
             plb,city,tal,dist,Lschool,Foccupation,
          Moccupation,Fincome,Mincome,Raddress,Rno,Mno,Oaddress,Ono,agree1,agree2,bc,lc,
-         Scaste,state
+         Scaste,state,Sclass,uid
       
       } = e.target.elements;
 
@@ -109,7 +109,9 @@ export default function Edit(props) {
             bc:bc.value,
             lc:lc.value,
             Scaste:Scaste.value,
-            state:state.value
+            state:state.value,
+            Sclass:Sclass.value,
+            uid:uid.value
           } 
          
 
@@ -218,7 +220,17 @@ export default function Edit(props) {
 
                      <form className="form mx-5"  onSubmit={SubmitData}>
                          <div className="form-row">
- 
+                        
+                        <div className="form-group col-md-6">
+                           <label htmlFor="name">Enter UID No.</label>
+                           <input type="number" name="uid" className=" form-control"  value={currentData.uid}  onChange={(e) => {handleChange(e)}} required placeholder="Enter" />                    
+                           </div>
+
+                          <div className="form-group col-md-6">
+                           <label htmlFor="name">Class</label>
+                           <input type="text" name="Sclass"  value={currentData.Sclass}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter "/>                    
+                          </div>
+                           
                            
                            <div className="form-group col-md-6">
                            <label htmlFor="name">Student First  Name</label>

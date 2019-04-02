@@ -38,7 +38,9 @@ let ObjType ={
     bc: " ",
     lc:'',
     Scaste:'',
-    state:''
+    state:'',
+    Sclass:'',
+    uid:''
   } 
 export default function Show(props) {
 
@@ -156,6 +158,8 @@ export default function Show(props) {
     </div>
    <div class="row ">
     <div class="col-4 text-nowrap " style={{borderRight:'1px solid black',textAlign:'right'}}>
+    <div className="mt-2 mr-3 border-bottom ">UID No. :</div>
+    <div className="mt-2 mr-3 border-bottom ">Student Class :</div>
     <div className="mt-2 mr-3 border-bottom ">First Name :</div>
     <div className="mt-1 mr-3 border-bottom">Father' Name :</div>
     <div className="mt-1 mr-3 border-bottom">Mother's name :</div>
@@ -184,6 +188,8 @@ export default function Show(props) {
     <div className="mt-1 mr-3 border-bottom">Original L/C and  Result Attached :</div>
     </div>
     <div class="col-6 col-sm-6 " style={{borderLeft:'1px solid black',position:'relative',left:5}}>
+      <div className="mt-2 mr-5 border-bottom">{currentData.uid}</div> 
+      <div className="mt-2 mr-5 border-bottom">{currentData.Sclass}</div> 
       <div className="mt-2 mr-5 border-bottom">{currentData.Sname}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Fname}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Mname}</div> 
@@ -288,23 +294,53 @@ doc.setFont('Times New Roman');
  
   doc.setFontSize(10);
   doc.setTextColor(40);
-  doc.text("DISHA EDUCATIONAL SOCIETY'S", 80, 25);
+  doc.text("DISHA EDUCATIONAL SOCIETY'S", 70, 13);
 
-  doc.setFontSize(25);
+  doc.setFontSize(20);
   doc.setTextColor(40);
-  doc.text("Disha English Medium School", 50, 35);
+  doc.text("Disha English Medium School, Ichalkaranji", 40, 20);
   doc.setFontSize(15);
   doc.setTextColor(40);
-  doc.text("Student Admission form", 80, 45);
+  doc.text("Admission form", 80, 25);
+ 
+  doc.setFontSize(10);
+  doc.setTextColor(40);
+  doc.text("Respected principal,", 10, 30);
+
+   doc.setFontSize(10);
+  doc.setTextColor(40);
+  doc.text(`Kindly admit my child :-  ${currentData.Sname} ${currentData.Fname}  ${currentData.surName} `, 10, 40);
+
+ doc.setFontSize(10);
+  doc.setTextColor(40);
+  doc.text(`${currentData.Sclass}  in class`, 30, 45);
+
+ doc.setFontSize(10);
+  doc.setTextColor(40);
+  
+  doc.text(`for the acadmic year ${new Date().getFullYear()} - ${new Date().getFullYear()+1}  `, 30, 50);
+ 
+
+
+ doc.setFontSize(13);
+  doc.setTextColor(40);
+  doc.text(`UID NO : ${currentData.uid}  `, 10, 70);
+
+
+
+
+ 
+ 
   doc.setFontStyle('normal');
   doc.setDrawColor(0);
 doc.setFillColor(0, 0, 0);
-doc.rect(170 ,35, 35, 35);
+doc.rect(160 ,35, 35, 35);
   
+ 
   doc.autoTable(columns, rows, {
     startY: doc.autoTableEndPosY() + 75,
     margin: { horizontal: 15 },
-    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:14},
+    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:12},
     bodyStyles: { valign: 'top' },
     columnStyles: { email: { columnWidth: 'wrap' } },
     theme: "striped"
