@@ -303,28 +303,28 @@ doc.setFont('Times New Roman');
   doc.setTextColor(40);
   doc.text("Admission form", 80, 25);
  
-  doc.setFontSize(10);
+  doc.setFontSize(13);
   doc.setTextColor(40);
   doc.text("Respected principal,", 10, 30);
 
-   doc.setFontSize(10);
+   doc.setFontSize(14);
   doc.setTextColor(40);
   doc.text(`Kindly admit my child :-  ${currentData.Sname} ${currentData.Fname}  ${currentData.surName} `, 10, 40);
 
- doc.setFontSize(10);
+ doc.setFontSize(14);
   doc.setTextColor(40);
-  doc.text(`${currentData.Sclass}  in class`, 30, 45);
+  doc.text(`${currentData.Sclass}  in class`,62 , 45);
 
- doc.setFontSize(10);
+ doc.setFontSize(14);
   doc.setTextColor(40);
   
-  doc.text(`for the acadmic year ${new Date().getFullYear()} - ${new Date().getFullYear()+1}  `, 30, 50);
+  doc.text(`for the acadmic year ${new Date().getFullYear()} - ${new Date().getFullYear()+1}  `, 60, 50);
  
 
 
- doc.setFontSize(13);
+  doc.setFontSize(15);
   doc.setTextColor(40);
-  doc.text(`UID NO : ${currentData.uid}  `, 10, 70);
+  doc.text(`UID NO : ${currentData.uid}  `, 10, 60);
 
 
 
@@ -333,14 +333,14 @@ doc.setFont('Times New Roman');
  
   doc.setFontStyle('normal');
   doc.setDrawColor(0);
-doc.setFillColor(0, 0, 0);
-doc.rect(160 ,35, 35, 35);
+  doc.setFillColor(0, 0, 0);
+  doc.rect(160 ,30, 35, 35);
   
  
   doc.autoTable(columns, rows, {
-    startY: doc.autoTableEndPosY() + 75,
+    startY: doc.autoTableEndPosY() + 70,
     margin: { horizontal: 15 },
-    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:12},
+    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:10},
     bodyStyles: { valign: 'top' },
     columnStyles: { email: { columnWidth: 'wrap' } },
     theme: "striped"
