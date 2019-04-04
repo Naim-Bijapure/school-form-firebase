@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
+import moment from 'moment'
 import firebase from '../Firebase'
 
 
@@ -36,7 +37,13 @@ let ObjType ={
     agree1:"",
     agree2:"",
     bc: " ",
-    lc:''
+    lc:'',
+    dobDay:'',
+    dobMonth:'',
+    dobYear:'',
+    MQualification:'',
+    FQualification:''
+    
   } 
 
 export default function Edit(props) {
@@ -73,9 +80,10 @@ export default function Edit(props) {
             surName,mt,religion,caste,dob,
             plb,city,tal,dist,Lschool,Foccupation,
          Moccupation,Fincome,Mincome,Raddress,Rno,Mno,Oaddress,Ono,agree1,agree2,bc,lc,
-         Scaste,state,Sclass,uid
+         Scaste,state,Sclass,uid,dobDay,dobMonth,dobYear,Adate,MQualification,FQualification
       
       } = e.target.elements;
+
 
         let photo=currentData.photo;
         
@@ -111,7 +119,13 @@ export default function Edit(props) {
             Scaste:Scaste.value,
             state:state.value,
             Sclass:Sclass.value,
-            uid:uid.value
+            uid:uid.value,
+            dobDay:dobDay.value,
+            dobMonth:dobMonth.value,
+            dobYear:dobYear.value,
+            Adate:Adate.value,
+            MQualification:MQualification.value,
+            FQualification:FQualification.value
           } 
          
 
@@ -221,18 +235,40 @@ export default function Edit(props) {
                      <form className="form mx-5"  onSubmit={SubmitData}>
                          <div className="form-row">
                         
-                        <div className="form-group col-md-6">
+                        <div className="form-group col-md-4">
                            <label htmlFor="name">Enter UID No.</label>
                            <input type="number" name="uid" className=" form-control"  value={currentData.uid}  onChange={(e) => {handleChange(e)}} required placeholder="Enter" />                    
                            </div>
 
-                          <div className="form-group col-md-6">
+                          <div className="form-group col-md-4">
+                           <label htmlFor="name">Admission Date.</label>
+                           <input type="date" name="Adate" className=" form-control" value={currentData.Adate} disabled={true}  onChange={(e) => {handleChange(e)}} required placeholder="Enter " />                    
+                           </div> 
+
+                          <div className="form-group col-md-4">
                            <label htmlFor="name">Class</label>
-                           <input type="text" name="Sclass"  value={currentData.Sclass}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter "/>                    
+                           {/* <input type="text" name="Sclass"  value={currentData.Sclass}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter "/>                     */}
+                           <select className="custom-select" name="Sclass" id="inputGroupSelect01" value={currentData.Sclass}  onChange={(e) => {handleChange(e)}}  >
+                               <option selected >Choose...</option>
+                                  <option value="Nursery">Nursery</option>
+                                  <option value="L.K.G">L.K.G</option>
+                                  <option value="U.K.G">U.K.G</option>
+                                  <option value="1st">1st</option>
+                                  <option value="2nd">2nd</option>
+                                  <option value="3rd">3rd</option>
+                                  <option value="4th">4th</option>
+                                  <option value="5th">5th</option>
+                                  <option value="6th">6th</option>
+                                  <option value="7th">7th</option>
+                                  <option value="8th">8th</option>
+                                  <option value="9th">9th</option>
+                                  <option value="10th">10th</option>
+                                </select>
                           </div>
                            
+                            
                            
-                           <div className="form-group col-md-6">
+                           <div className="form-group col-md-4">
                            <label htmlFor="name">Student First  Name</label>
                            <input type="text" name="Sname" value={currentData.Sname}  onChange={(e) => {handleChange(e)}} className=" form-control" required  jplaceholder="Enter"/>                    
                            </div>
@@ -275,18 +311,36 @@ export default function Edit(props) {
 
 
                            
-                            <div className="form-group col-md-6">
+                            <div className="form-group col-md-3">
                            <label htmlFor="name">Date Of Birth</label>
                            <input type="date" name="dob" value={currentData.dob}  onChange={(e) => {handleChange(e)}} className=" form-control" required  placeholder="Enter "/>                    
                            </div>
-                           
+
+                            <div className="form-group col-md-3">
+                            <label htmlFor="name">Date Of Birth (in Words)</label>
+                           <input type="text" name="dobDay" value={currentData.dobDay} onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter Day  "/>                    
+                           </div>
+                           <div className="form-group col-md-3">
+                            <label htmlFor="name">Month</label>
+                           <input type="text" name="dobMonth" value={currentData.dobMonth}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter Month  "/>                    
+                           </div>
+                           <div className="form-group col-md-3">
+                            <label htmlFor="name">Year</label>
+                           <input type="text" name="dobYear" value={currentData.dobYear}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter Year "/>                    
+                           </div>
+
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Place Of Birth</label>
                            <input type="text" name="plb" value={currentData.plb}  onChange={(e) => {handleChange(e)}} className=" form-control" required  placeholder="Enter "/>                    
                            </div>
+                           <div className="form-group  col-md-6   ">
                            
+                           <label htmlFor="name">Last School Attended (if Any)</label>
+                           <input type="text" name="Lschool" value={currentData.Lschool}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter " />                    
                            
-                           <div className="form-group col-md-3 col-sm-3j">
+                           </div>  
+                           
+                           <div className="form-group col-md-3 col-sm-3">
                            <label htmlFor="name">City</label>
                            <input type="text" name="city" value={currentData.city}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter "/>                    
                            </div>                           
@@ -308,12 +362,7 @@ export default function Edit(props) {
 
 
 
-                           <div className="form-group  col-md-7 mr-auto  ">
-                           
-                           <label htmlFor="name">Last School Attended (if Any)</label>
-                           <input type="text" name="Lschool" value={currentData.Lschool}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter " />                    
-                           
-                           </div> 
+                         
                            
                            
                            
@@ -327,7 +376,18 @@ export default function Edit(props) {
                            <label htmlFor="name">Detail's Of Mother Occupation/Busines/Profession</label>
                            <input type="text" name="Moccupation"  value={currentData.Moccupation}  onChange={(e) => {handleChange(e)}} className=" form-control" required placeholder="Enter "/>                    
                            </div>                           
-                           
+
+                           <div className="form-group col-md-6">
+                           <label htmlFor="name">Detail's Father's Qualification</label>
+                           <input type="text" name="FQualification" className=" form-control" value={currentData.FQualification}  onChange={(e) => {handleChange(e)}} required placeholder="Enter "/>                    
+                           </div>
+
+                           <div className="form-group col-md-6">
+                           <label htmlFor="name">Detail's Mother's Qualification</label>
+                           <input type="text" name="MQualification" className=" form-control" value={currentData.MQualification}  onChange={(e) => {handleChange(e)}} required placeholder="Enter "/>                    
+                           </div>
+
+
                            
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Fathers Annual Income</label>

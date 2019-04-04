@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import {renderToString,renderToStaticMarkup} from 'react-dom/server';
 import  'jspdf-autotable';
+import moment from 'moment';
 
 import firebase from '../Firebase';
 import  '../App.css'
@@ -40,7 +41,13 @@ let ObjType ={
     Scaste:'',
     state:'',
     Sclass:'',
-    uid:''
+    uid:'',
+    dobDay:'',
+    dobMonth:'',
+    dobYear:'',
+    Adate:'',
+    MQualification:'',
+    FQualification:'' 
   } 
 export default function Show(props) {
 
@@ -134,7 +141,9 @@ export default function Show(props) {
  
 } 
 
-
+function OnRun() {
+  
+}
 
     return(
 
@@ -160,6 +169,7 @@ export default function Show(props) {
     <div class="col-4 text-nowrap " style={{borderRight:'1px solid black',textAlign:'right'}}>
     <div className="mt-2 mr-3 border-bottom ">UID No. :</div>
     <div className="mt-2 mr-3 border-bottom ">Student Class :</div>
+    <div className="mt-2 mr-3 border-bottom ">Admission Date :</div>
     <div className="mt-2 mr-3 border-bottom ">First Name :</div>
     <div className="mt-1 mr-3 border-bottom">Father' Name :</div>
     <div className="mt-1 mr-3 border-bottom">Mother's name :</div>
@@ -169,6 +179,7 @@ export default function Show(props) {
     <div className="mt-1 mr-3 border-bottom">Caste :</div>
     <div className="mt-1 mr-3 border-bottom">Sub Caste :</div>
     <div className="mt-1 mr-3">Date of Birth :</div>
+    <div className="mt-1 mr-3">Date of Birth in Words :</div>
     <div className="mt-1 mr-3 border-bottom">Place Of Birth :</div>
     <div className="mt-1 mr-3 border-bottom">City :</div>
     <div className="mt-1 mr-3 border-bottom">Tal :</div>
@@ -176,7 +187,9 @@ export default function Show(props) {
     <div className="mt-1 mr-3 border-bottom">State :</div>
     <div className="mt-1 mr-3 border-bottom">Last School Attended :</div>
     <div className="mt-1 mr-3 border-bottom">Father's Profession/Business :</div>
+    <div className="mt-1 mr-3 border-bottom">Father's Qualification :</div>
     <div className="mt-1 mr-3 border-bottom">Mother's Profession/Business :</div>
+    <div className="mt-1 mr-3 border-bottom">Mother's Qualification :</div>
     <div className="mt-1 mr-3 border-bottom">Father's Annual Income :</div>
     <div className="mt-1 mr-3 border-bottom">Mother's Annual Income :</div>
     <div className="mt-1 mr-3 border-bottom">Residential Address :</div>
@@ -190,6 +203,7 @@ export default function Show(props) {
     <div class="col-6 col-sm-6 " style={{borderLeft:'1px solid black',position:'relative',left:5}}>
       <div className="mt-2 mr-5 border-bottom">{currentData.uid}</div> 
       <div className="mt-2 mr-5 border-bottom">{currentData.Sclass}</div> 
+      <div className="mt-2 mr-5 border-bottom">{moment(currentData.Adate).format('DD/MM/YYYY')}</div> 
       <div className="mt-2 mr-5 border-bottom">{currentData.Sname}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Fname}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Mname}</div> 
@@ -198,7 +212,8 @@ export default function Show(props) {
       <div className="mt-1 mr-5 border-bottom">{currentData.religion}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.caste }</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Scaste }</div> 
-      <div className="mt-1 mr-5 border-bottom ">{currentData.dob}</div> 
+      <div className="mt-1 mr-5 border-bottom ">{moment(currentData.dob).format('DD/MM/YYYY')}</div> 
+      <div className="mt-1 mr-5 border-bottom">{currentData.dobDay +'  '+currentData.dobMonth+' '+currentData.dobYear }</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.plb}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.city}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.tal}</div> 
@@ -206,7 +221,9 @@ export default function Show(props) {
       <div className="mt-1 mr-5 border-bottom">{currentData.state }</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Lschool}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Foccupation }</div> 
+      <div className="mt-1 mr-5 border-bottom">{currentData.FQualification }</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Moccupation}</div> 
+      <div className="mt-1 mr-5 border-bottom">{currentData.MQualification }</div> 
       <div className="mt-1 mr-5 border-bottom ">{currentData.Fincome}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Mincome}</div> 
       <div className="mt-1 mr-5 border-bottom">{currentData.Raddress}</div> 
@@ -260,24 +277,27 @@ var rows=[    {A:"1 . First Name :"   ,  B:`${currentData.Sname}`},
     {A:"6. Religion :"   ,  B:`${currentData.religion}`},
     {A:"7. Caste :"   ,  B:`${currentData.caste}`},
     {A:"8. Sub Caste :"   ,  B:`${currentData.Scaste}`},
-    {A:"9. Date of Birth :"   ,  B:`${currentData.dob}`},
-    {A:"10. Place Of Birth :"   ,  B:`${currentData.plb}`},
-    {A:"11. City :"   ,  B:`${currentData.city}`},
-    {A:"12. Tal :"   ,  B:`${currentData.tal}`},
-    {A:"13. District :"   ,  B:`${currentData.dist}`},
-    {A:"14. State :"   ,  B:`${currentData.state}`},
-    {A:"15. Last School Attended :"   ,  B:`${currentData.Lschool}`},
-    {A:"16. Father's Profession/Business :"   ,  B:`${currentData.Foccupation}`},
-    {A:"17. Mother's Profession/Business :"   ,  B:`${currentData.Moccupation}`},
-    {A:"18. Father's Annual Income :"   ,  B:`${currentData.Fincome}`},
-    {A:"19. Mother's Annual Income :"   ,  B:`${currentData.Mincome}`},
-    {A:"20.Residential Address :"   ,  B:`${currentData.Raddress}`},
-    {A:"21. Residential Phone No :"   ,  B:`${currentData.Rno}`},
-    {A:"22. Mobile No :"   ,  B:`${currentData.Mno}`},
-    {A:"23. Office Address :"   ,  B:`${currentData.Oaddress}`},
-    {A:"24. Office Phone No :"   ,  B:`${currentData.Ono}`},
-    {A:"25. Original Birth Certificate Attached:",  B:`${currentData.bc}`},
-    {A:"26. Original L/C and  Result Attached:"   ,  B:`${currentData.lc}`}
+    {A:"9. Date of Birth :"   ,  B:`${moment(currentData.dob).format('DD/MM/YYYY')}`},
+    {A:"10. Date of Birth in Words :"   ,  B:`${currentData.dobDay+' '+currentData.dobMonth+' '+currentData.dobYear}`},
+    {A:"11. Place Of Birth :"   ,  B:`${currentData.plb}`},
+    {A:"12. City :"   ,  B:`${currentData.city}`},
+    {A:"13. Tal :"   ,  B:`${currentData.tal}`},
+    {A:"14. District :"   ,  B:`${currentData.dist}`},
+    {A:"15. State :"   ,  B:`${currentData.state}`},
+    {A:"16. Last School Attended :"   ,  B:`${currentData.Lschool}`},
+    {A:"17. Father's Profession/Business :"   ,  B:`${currentData.Foccupation}`},
+    {A:"18. Father's Qualification :"   ,  B:`${currentData.FQualification}`},
+    {A:"19. Mother's Profession/Business :"   ,  B:`${currentData.Moccupation}`},
+    {A:"20. Mother's Qualification :"   ,  B:`${currentData.MQualification}`},
+    {A:"21. Father's Annual Income :"   ,  B:`${currentData.Fincome}`},
+    {A:"22. Mother's Annual Income :"   ,  B:`${currentData.Mincome}`},
+    {A:"23.Residential Address :"   ,  B:`${currentData.Raddress}`},
+    {A:"24. Residential Phone No :"   ,  B:`${currentData.Rno}`},
+    {A:"25. Mobile No :"   ,  B:`${currentData.Mno}`},
+    {A:"26. Office Address :"   ,  B:`${currentData.Oaddress}`},
+    {A:"27. Office Phone No :"   ,  B:`${currentData.Ono}`},
+    {A:"28. Original Birth Certificate Attached:",  B:`${currentData.bc}`},
+    {A:"29. Original L/C and  Result Attached:"   ,  B:`${currentData.lc}`}
  ]
 
 
@@ -313,12 +333,12 @@ doc.setFont('Times New Roman');
 
  doc.setFontSize(14);
   doc.setTextColor(40);
-  doc.text(`${currentData.Sclass}  in class`,62 , 45);
+  doc.text(`In Class  ${currentData.Sclass}`,10 ,45);
 
  doc.setFontSize(14);
   doc.setTextColor(40);
   
-  doc.text(`for the acadmic year ${new Date().getFullYear()} - ${new Date().getFullYear()+1}  `, 60, 50);
+  doc.text(`For the Academic year ${new Date().getFullYear()} - ${new Date().getFullYear()+1}  `, 10, 50);
  
 
 
@@ -334,19 +354,32 @@ doc.setFont('Times New Roman');
   doc.setFontStyle('normal');
   doc.setDrawColor(0);
   doc.setFillColor(0, 0, 0);
-  doc.rect(160 ,30, 35, 35);
+  doc.rect(160 ,26, 35, 35);
   
- 
+  
+  
   doc.autoTable(columns, rows, {
-    startY: doc.autoTableEndPosY() + 70,
+    startY: doc.autoTableEndPosY() + 63,
     margin: { horizontal: 15 },
-    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:10},
+    styles: { overflow: 'linebreak',font:'Times New Roman',fontSize:11},
     bodyStyles: { valign: 'top' },
     columnStyles: { email: { columnWidth: 'wrap' } },
-    theme: "striped"
+    theme: "plain"
   });
-
   
+  doc.setFontSize(13);
+  doc.text("Ichalkaranji                                                   _______________________________" ,25,doc.autoTable.previous.finalY+8)
+  doc.text(`Date:  ${moment(currentData.Adate).format('DD/MM/YYYY')}                                                 Signature(Parent/Guardian)` ,25,doc.autoTable.previous.finalY+16)
+  
+  doc.text("--------------------------------------------------------------------------------------------------------------------" ,15,doc.autoTable.previous.finalY+23)
+  doc.setFontStyle('bold');
+  doc.text("FOR OFFICE USE ONLY" ,80,doc.autoTable.previous.finalY+28)
+
+  doc.setFontStyle('normal');
+  doc.text( "Remark Of Principal                                        _______________________________",25,doc.autoTable.previous.finalY+36)
+  doc.text("Date                                                                       Signature(Parent/Guardian)" ,25,doc.autoTable.previous.finalY+43)
+ 
+
   doc.save(`${currentData.Sname}.pdf`);
  
 }

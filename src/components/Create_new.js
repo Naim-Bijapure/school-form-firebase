@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react'
+import moment from 'moment'
 import firebase from '../Firebase'
 
 const storage =firebase.storage();
@@ -24,6 +25,10 @@ export default  function Create(props) {
      },[])
 
 
+    
+
+
+
 
 
 
@@ -35,10 +40,15 @@ export default  function Create(props) {
             surName,mt,religion,caste,dob,
             plb,city,tal,dist,Lschool,Foccupation,
          Moccupation,Fincome,Mincome,Raddress,Rno,Mno,Oaddress,Ono,agree1,agree2,bc,lc,
-         Scaste,state,uid,Sclass
+         Scaste,state,uid,Sclass,dobDay,dobMonth,dobYear,Adate,MQualification,FQualification
       
       
                } = e.target.elements;
+
+
+          let dateFormated=moment(dob.value).format('DD/MM/YYYY');
+    
+               
       let newData ={
                     Sname:Sname.value,
                     Fname:Fname.value,
@@ -71,7 +81,13 @@ export default  function Create(props) {
                     Scaste:Scaste.value,
                     state:state.value,
                     Sclass:Sclass.value,
-                    uid:uid.value
+                    uid:uid.value,
+                    dobDay:dobDay.value,
+                    dobMonth:dobMonth.value,
+                    dobYear:dobYear.value,
+                    Adate:Adate.value,
+                    MQualification:MQualification.value,
+                    FQualification:FQualification.value
                   } 
      
       
@@ -147,30 +163,58 @@ export default  function Create(props) {
   }
   }
    }
+   function ChangeIt(e) {
+        console.log(e.target.value);
+         
+   }
+  
    
    
     return (
         <div>
           <div className="card  mt-2  ">
           
-              <div className="card-body create-form m-4 shadow-lg p-3 mb-5 bg-white rounded">
+              <div className="card-body create-form m-4 sh  adow-lg p-3 mb-5 bg-white rounded">
                     <form className="form mx-5"  onSubmit={SubmitData}>
                          <div className="form-row">
 
-                         <div className="form-group col-md-6">
+                         <div className="form-group col-md-4">
                            <label htmlFor="name">Enter UID No.</label>
                            <input type="number" name="uid" className=" form-control" required placeholder="Enter" />                    
                            </div>
+                          
+                           <div className="form-group col-md-4">
+                           <label htmlFor="name">Admission Date.</label>
+                           <input type="date" name="Adate" className=" form-control" required placeholder="Enter " />                    
+                           </div>
 
-                          <div className="form-group col-md-6">
+
+                          <div className="form-group col-md-4">
                            <label htmlFor="name">Class</label>
-                           <input type="text" name="Sclass" className=" form-control" required placeholder="Enter "/>                    
+                           {/* <input type="text" name="Sclass" className=" form-control" required placeholder="Enter "/>                     */}
+   
+                             <select className="custom-select" name="Sclass" onChange={(e)=>{ChangeIt(e)}} id="inputGroupSelect01" >
+                               <option selected >Choose...</option>
+                                  <option value="Nursery">Nursery</option>
+                                  <option value="L.K.G">L.K.G</option>
+                                  <option value="U.K.G">U.K.G</option>
+                                  <option value="1st">1st</option>
+                                  <option value="2nd">2nd</option>
+                                  <option value="3rd">3rd</option>
+                                  <option value="4th">4th</option>
+                                  <option value="5th">5th</option>
+                                  <option value="6th">6th</option>
+                                  <option value="7th">7th</option>
+                                  <option value="8th">8th</option>
+                                  <option value="9th">9th</option>
+                                  <option value="10th">10th</option>
+                                </select>
                           </div>
                            
                            
                            <div className="form-group col-md-6">
                            <label htmlFor="name">Student First  Name</label>
-                           <input type="text" name="Sname" className=" form-control" required placeholder="Enter" />                    
+                           <input type="text" name="Sname" className=" form-control"  required placeholder="Enter" />                    
                            </div>
 
                           <div className="form-group col-md-6">
@@ -216,16 +260,35 @@ export default  function Create(props) {
 
                            
                             
-                           <div className="form-group col-md-6">
+                           <div className="form-group col-md-3">
                            <label htmlFor="name">Date Of Birth</label>
                            <input type="date" name="dob" className=" form-control" required placeholder="Enter "/>                    
                            </div>
+
+                           <div className="form-group col-md-3">
+                            <label htmlFor="name">Date Of Birth (in Words)</label>
+                           <input type="text" name="dobDay" className=" form-control" required placeholder="Enter Day  "/>                    
+                           </div>
+                           <div className="form-group col-md-3">
+                            <label htmlFor="name">Month</label>
+                           <input type="text" name="dobMonth" className=" form-control" required placeholder="Enter Month  "/>                    
+                           </div>
+                           <div className="form-group col-md-3">
+                            <label htmlFor="name">Year</label>
+                           <input type="text" name="dobYear" className=" form-control" required placeholder="Enter Year "/>                    
+                           </div>
                            
+
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Place Of Birth</label>
                            <input type="text" name="plb" className=" form-control" required placeholder="Enter "/>                    
                            </div>
+                           <div className="form-group  col-md-6   ">
                            
+                           <label htmlFor="name">Last School Attended (if Any)</label>
+                           <input type="text" name="Lschool" className=" form-control" required placeholder="Enter " />                    
+                           
+                           </div>  
                            
                            <div className="form-group col-md-3 col-sm-3">
                            <label htmlFor="name">City</label>
@@ -249,12 +312,7 @@ export default  function Create(props) {
 
 
 
-                           <div className="form-group  col-md-7 mr-auto  ">
-                           
-                           <label htmlFor="name">Last School Attended (if Any)</label>
-                           <input type="text" name="Lschool" className=" form-control" required placeholder="Enter " />                    
-                           
-                           </div> 
+                          
                            
                            
                            
@@ -264,10 +322,24 @@ export default  function Create(props) {
                            <input type="text" name="Foccupation" className=" form-control" required placeholder="Enter "/>                    
                             </div>
                            
+                           
+
                             <div className="form-group col-md-6">
                            <label htmlFor="name">Detail's Of Mother Occupation/Busines/Profession</label>
                            <input type="text" name="Moccupation" className=" form-control" required placeholder="Enter "/>                    
                            </div>                           
+                          
+                           <div className="form-group col-md-6">
+                           <label htmlFor="name">Detail's Father's Qualification</label>
+                           <input type="text" name="FQualification" className=" form-control" required placeholder="Enter "/>                    
+                           </div>
+                            
+                           <div className="form-group col-md-6">
+                         
+                           <label htmlFor="name">Detail's Of Mother's Qualification</label>
+                           <input type="text" name="MQualification" className=" form-control" required placeholder="Enter "/>                    
+                        
+                           </div>
                            
                            
                             <div className="form-group col-md-6">
@@ -386,7 +458,7 @@ export default  function Create(props) {
                             <label htmlFor="photo">Upload a Photo</label>
                             <div className="input-group mb-3">
                                 <div className="custom-file">
-                                  <input type="file" className="custom-file-input" ref={imgRef}  id="inputGroupFile02" required/>
+                                  <input type="file" className="custom-file-input" ref={imgRef}  id="inputGroupFile02"/>
                                   <label className="custom-file-label"   aria-describedby="inputGroupFileAddon02">Choose file</label>
                                 </div>
                                 <div className="input-group-append">
@@ -401,7 +473,8 @@ export default  function Create(props) {
                             </div>
                         
                            <div className="text-center mt-4">
-                            <button  type="submit" disabled={!studentData.photo} className="btn btn-primary ">Submit</button>
+                            <button  type="submit"  className="btn btn-primary ">Submit</button>
+                            {/* <button  type="button"  className="btn btn-primary" onClick={Check}>Check</button> */}
 
                            </div>
                          </div>
